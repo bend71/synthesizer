@@ -11,13 +11,13 @@ function Synthesizer() {
         const synth = new Tone.Synth().toDestination();
 
         //play a middle 'C' for the duration of an 8th note
-        synth.triggerAttackRelease(note , "8n");
+        synth.triggerAttackRelease(note , "4n");
 
     }
 
     return (
         <>
-            {noteArray.map(notes => <button onClick={event => note(event, notes)}>PUSH</button>)}
+            {noteArray.map((notes, index) => <button key={index} onClick={event => note(event, notes)}>{notes}</button>)}
         </>
     )
 }
