@@ -1,9 +1,12 @@
 import React from 'react';
 import * as Tone from 'tone';
+import './hexagon/hexagon.css';
 
 function Synthesizer() {
 
     let allNote = [["c3", "4n"], ["c4", "8n"], ["c5", "16n"]]
+    // Tone.Transport.start();
+
 
     function note(event, note, length) {
         event.preventDefault();
@@ -15,12 +18,38 @@ function Synthesizer() {
 
     }
 
+    // function sequence(event, note, length) {
+    //     event.preventDefault();
+
+    //     const synthOne = new Tone.FMSynth().toDestination();
+
+    //     const loopOne = new Tone.Loop(time => {
+    //         synthOne.triggerAttackRelease("C2", "8n", time);
+    //     }, "4n").start("8n");
+        
+    // }
+
     return (
-        <>
+        <div className="body">
+        <div className="container">
             {allNote.map((notes, index) => 
-            <button key={index} onClick={event => note(event, notes[0], notes[1])}>{notes[0]}</button>
+            <div  className="box" key={index} onClick={event => note(event, notes[0], notes[1])}>{notes[0]}</div>
             )}
-        </>
+            {/* <button onClick={event => sequence(event)}>sequence</button> */}
+        </div>
+        <div className="container">
+            {allNote.map((notes, index) => 
+            <div  className="box" key={index} onClick={event => note(event, notes[0], notes[1])}>{notes[0]}</div>
+            )}
+            {/* <button onClick={event => sequence(event)}>sequence</button> */}
+        </div>
+        <div className="container">
+            {allNote.map((notes, index) => 
+            <div  className="box" key={index} onClick={event => note(event, notes[0], notes[1])}>{notes[0]}</div>
+            )}
+            {/* <button onClick={event => sequence(event)}>sequence</button> */}
+        </div>
+        </div>
     )
 }
 
