@@ -4,7 +4,7 @@ import './hexagon/hexagon.css';
 
 function Synthesizer() {
 
-    let allNote = [["c3", "4n"], ["c4", "8n"], ["c5", "16n"]]
+    let allNote = [["c3", "4n"], ["c4", "8n"], ["c5", "16n"], ["d3", "4n"], ["d4", "8n"], ["d5", "16n"], ["f3", "4n"], ["g4", "8n"], ["b5", "16n"]]
     // Tone.Transport.start();
 
 
