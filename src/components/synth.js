@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Tone from 'tone';
 import './hexagon/hexagon.css';
 
 function Synthesizer() {
 
-    let allNote = [["c3", "4n"], ["c4", "8n"], ["c5", "16n"], ["d3", "4n"], ["d4", "8n"], ["d5", "16n"], ["f3", "4n"], ["g4", "8n"], ["b5", "16n"]]
-    // Tone.Transport.start();
 
-
-    function note(event, note, length) {
+    function note(event) {
         event.preventDefault();
         //create a synth and connect it to the main output (your speakers)
         const synth = new Tone.Synth().toDestination();
 
         //play a middle 'C' for the duration of an 8th note
-        synth.triggerAttackRelease(note, length);
+        const seq = new Tone.Sequence((time, note) => {
+            synth.triggerAttackRelease(note, 0.1, time);
+
+        }, ["C3", ["B2", "C2", "B3"], "F4", "F3"]).start(0);
+        Tone.Transport.start();
 
     }
+
 
     // function sequence(event, note, length) {
     //     event.preventDefault();
@@ -32,22 +34,9 @@ function Synthesizer() {
     return (
         <div className="body">
         <div className="container">
-            {allNote.map((notes, index) => 
-            <div  className="box" key={index} onClick={event => note(event, notes[0], notes[1])}>{notes[0]}</div>
-            )}
-            {/* <button onClick={event => sequence(event)}>sequence</button> */}
-        </div>
-        <div className="container">
-            {allNote.map((notes, index) => 
-            <div  className="box" key={index} onClick={event => note(event, notes[0], notes[1])}>{notes[0]}</div>
-            )}
-            {/* <button onClick={event => sequence(event)}>sequence</button> */}
-        </div>
-        <div className="container">
-            {allNote.map((notes, index) => 
-            <div  className="box" key={index} onClick={event => note(event, notes[0], notes[1])}>{notes[0]}</div>
-            )}
-            {/* <button onClick={event => sequence(event)}>sequence</button> */}
+            <div  className="box" onClick={event => note(event)}>
+            </div>
+        
         </div>
         </div>
     )
